@@ -2,7 +2,6 @@ const userService = require('../services/userService');
 const errorHandler = require('../middlewares/errorHandler');
 const { newUserValidation } = require('../middlewares/userSchemas');
 
-const alreadyExists = 'User already registered';
 const missingFields = 'Some required fields are missing';
 
 const login = async (req, res, _next) => {
