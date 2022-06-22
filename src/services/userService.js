@@ -2,6 +2,7 @@ const { User } = require('../database/models');
 const errorHandler = require('../middlewares/errorHandler');
 
 const notFound = 'User does not exist';
+const alreadyExists = 'User already registered';
 
 const create = async (displayName, email, password, image) => {
   const newUser = await User.create({ displayName, email, password, image });
@@ -10,7 +11,7 @@ const create = async (displayName, email, password, image) => {
 
 const getByEmail = async (email) => {
   const user = await User.findOne({ where: { email } });
-  return user;
+  if (user) throw errorHandler(409, alreadyExists);
 };
 
 const getAll = async () => {

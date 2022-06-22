@@ -13,12 +13,11 @@ const login = async (req, res, _next) => {
 };
 
 const create = async (req, res, _next) => {
-  const { displayName, email, password, image } = req.body;
-
-  if (userService.getByEmail(email)) throw errorHandler(409, alreadyExists);
-
-  const invalidUser = newUserValidation.validate(displayName, email, password);
+  const invalidUser = newUserValidation.validate(req.body);
   if (invalidUser.error) throw errorHandler(400, invalidUser.error.details[0].message);
+  
+  const { displayName, email, password, image } = req.body;
+  await userService.getByEmail(email);
   
   const newUser = await userService.create(displayName, email, password, image);
   return res.status(201).json(newUser);
