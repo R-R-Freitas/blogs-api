@@ -7,8 +7,8 @@ const newBlogPostValidation = Joi.object({
   });
 
   const editBlogPostValidation = Joi.object({
-    title: Joi.required(),
-    content: Joi.required(),
+    title: Joi.string().required(),
+    content: Joi.string().required(),
   });
 
 module.exports = {

@@ -30,7 +30,6 @@ const getById = async (id) => {
       { model: User, as: 'user', attributes: { exclude: ['password'] } },
       { model: Category, as: 'categories', through: { attributes: [] } },
     ] },
-
   );
   if (!blogPost) throw errorHandler(404, notFound);
   return blogPost;
