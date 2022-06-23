@@ -7,13 +7,15 @@ const invalid = 'Invalid fields';
 
 const create = async (displayName, email, password, image) => {
   const newUser = await User.create({ displayName, email, password, image });
-  return newUser;
+  const { password: pw, ...userWithoutPassword } = newUser.dataValues;
+  return userWithoutPassword;
 };
 
-const login = async (email, password) => {
+const login = async (email, loginPassword) => {
   const user = await User.findOne({ where: { email } });
-  if (!user || user.password !== password) throw errorHandler(400, invalid);
-  return { email, password };
+  if (!user || user.password !== loginPassword) throw errorHandler(400, invalid);
+  const { password, ...userWithoutPassword } = user.dataValues;
+  return userWithoutPassword;
 };
 
 const getByEmail = async (email) => {
