@@ -11,7 +11,7 @@ router.post('/login', rescue(user.login));
 router.post('/user', rescue(user.create));
 router.get('/user', [rescue(authToken)], rescue(user.getAll));
 router.get('/user/:id', [rescue(authToken)], rescue(user.getById));
-router.delete('user/me', [rescue(authToken)], rescue(user.remove));
+router.delete('/user/me', [rescue(authToken)], rescue(user.remove));
 
 router.post('/categories', [rescue(authToken)], rescue(category.create));
 router.get('/categories', [rescue(authToken)], rescue(category.getAll));

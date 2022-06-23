@@ -39,7 +39,7 @@ const getById = async (req, res, _next) => {
 };
 
 const remove = async (req, res, _next) => {
-  const id = 1;
+  const { id } = req.user.data;
 
   await userService.remove(id);
   return res.status(204).end();

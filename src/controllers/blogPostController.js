@@ -14,7 +14,6 @@ const create = async (req, res, _next) => {
   const { title, content, categoryIds } = req.body;
   await categoryService.getByIds(categoryIds);
 
-
   const newBlogPost = await blogPostService.create(title, content, userId, categoryIds);
   return res.status(201).json(newBlogPost);
 };
