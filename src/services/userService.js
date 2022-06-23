@@ -3,10 +3,17 @@ const errorHandler = require('../middlewares/errorHandler');
 
 const notFound = 'User does not exist';
 const alreadyExists = 'User already registered';
+const invalid = 'Invalid fields';
 
 const create = async (displayName, email, password, image) => {
   const newUser = await User.create({ displayName, email, password, image });
   return newUser;
+};
+
+const login = async (email, password) => {
+  const user = await User.findOne({ where: { email } });
+  if (!user || user.password !== password) throw errorHandler(400, invalid);
+  return { email, password };
 };
 
 const getByEmail = async (email) => {
@@ -35,4 +42,5 @@ module.exports = {
   getById,
   remove,
   getByEmail,
+  login,
 };
