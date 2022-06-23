@@ -1,7 +1,7 @@
-const errorHandler = require('../middlewares/errorHandler');
+const errorHandler = require('../utils/errorHandler');
 const blogPostService = require('../services/blogPostService');
 const categoryService = require('../services/categoryService');
-const { newBlogPostValidation, editBlogPostValidation } = require('../middlewares/blogPostSchemas');
+const { newBlogPostValidation, editBlogPostValidation } = require('../utils/blogPostSchemas');
 
 const missingFields = 'Some required fields are missing';
 

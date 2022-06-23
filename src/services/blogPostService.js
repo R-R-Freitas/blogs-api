@@ -1,5 +1,5 @@
 const { BlogPost, PostCategory, User, Category } = require('../database/models');
-const errorHandler = require('../middlewares/errorHandler');
+const errorHandler = require('../utils/errorHandler');
 
 const notFound = 'Post does not exist';
 

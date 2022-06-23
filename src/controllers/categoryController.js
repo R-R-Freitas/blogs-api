@@ -1,5 +1,5 @@
 const categoryService = require('../services/categoryService');
-const errorHandler = require('../middlewares/errorHandler');
+const errorHandler = require('../utils/errorHandler');
 
 const missingName = '"name" is required';
 

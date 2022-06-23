@@ -1,5 +1,5 @@
 const { Category } = require('../database/models');
-const errorHandler = require('../middlewares/errorHandler');
+const errorHandler = require('../utils/errorHandler');
 
 const notFound = 'CategoryIds not found';
 

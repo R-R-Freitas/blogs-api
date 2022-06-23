@@ -1,5 +1,5 @@
 const { User } = require('../database/models');
-const errorHandler = require('../middlewares/errorHandler');
+const errorHandler = require('../utils/errorHandler');
 
 const notFound = 'User does not exist';
 const alreadyExists = 'User already registered';
@@ -31,7 +31,8 @@ const getAll = async () => {
 const getById = async (id) => {
   const user = await User.findByPk(id);
   if (!user) throw errorHandler(404, notFound);
-  return user;
+  const { password, ...userWithoutPassword } = user.dataValues;
+  return userWithoutPassword;
 };
 
 const remove = async (id) => {

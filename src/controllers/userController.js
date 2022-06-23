@@ -1,12 +1,13 @@
 const userService = require('../services/userService');
-const errorHandler = require('../middlewares/errorHandler');
-const { newUserValidation } = require('../middlewares/userSchemas');
-const generateJWT = require('../middlewares/generateJWT');
+const errorHandler = require('../utils/errorHandler');
+const { newUserValidation, loginValidation } = require('../utils/userSchemas');
+const generateJWT = require('../utils/generateJWT');
 
 const missingFields = 'Some required fields are missing';
 
 const login = async (req, res, _next) => {
-  if (!req.body.email || !req.body.password) throw errorHandler(400, missingFields);
+  const invalidUser = loginValidation.validate(req.body);
+  if (invalidUser.error) throw errorHandler(400, missingFields);
   const { email, password } = req.body;
   const user = await userService.login(email, password);
   const token = generateJWT(user);
