@@ -5,7 +5,7 @@ const secret = process.env.JWT_SECRET;
 
 const jwtConfig = {
   expiresIn: '1h',
-  algorithm: 'HS256'
+  algorithm: 'HS256',
 };
 
 const generateJWT = (payload) => {
