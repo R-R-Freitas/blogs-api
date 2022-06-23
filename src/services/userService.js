@@ -25,7 +25,13 @@ const getByEmail = async (email) => {
 
 const getAll = async () => {
   const users = await User.findAll();
-  return users;
+  const usersWithoutPassword = users.map((userData) => ({
+    id: userData.id,
+    displayName: userData.displayName,
+    email: userData.email,
+    image: userData.image,
+  }));
+  return usersWithoutPassword;
 };
 
 const getById = async (id) => {
