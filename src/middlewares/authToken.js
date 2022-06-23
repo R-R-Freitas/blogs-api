@@ -9,10 +9,10 @@ const authToken = async (req, _res, next) => {
     const token = req.headers.authorization;
 
     if (!token) throw errorHandler(401, notFound);
-    const decoded = jwt.verify(token, secret)
+    const decoded = jwt.verify(token, secret);
     req.user = decoded;
 
     next();
-}
+};
 
-module.exports = authToken 
+module.exports = authToken;
