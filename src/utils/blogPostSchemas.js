@@ -1,8 +1,8 @@
 const Joi = require('joi');
 
 const newBlogPostValidation = Joi.object({
-    title: Joi.required(),
-    content: Joi.required(),
+    title: Joi.string().required(),
+    content: Joi.string().required(),
     categoryIds: Joi.required(),
   });
 
